@@ -6,15 +6,12 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include <random>
 #include <chrono>
 #include <iomanip>
 #include<vector>
 #include <wtypes.h>
-#include <winuser.h>
-
 
 using namespace std;
 
@@ -142,7 +139,7 @@ public:
     /*
      *
      *
-     * Working with the Dat file data
+     * Working with Dat file data
      *
      *
      * 
@@ -235,7 +232,6 @@ public:
         in.close();//Close The File
         return true;// Success!
     }
-
     
     void MenuChooseFile()
     {
@@ -245,9 +241,8 @@ public:
 
         /* Init data values to NULL */
         head->data = NULL;
-        tail->data = NULL;
-        
-        //Node<int>* insertList = NULL;// Insertion sort list
+        tail->data = NULL;        
+         
         int num = 0;// File choice
         string fileName;// File name to open
         cout << "Choose which file to run." << '\n';
@@ -301,7 +296,7 @@ public:
         if (result)
         {             
             //DisplayList();
-            // 1. Start timer
+            
             auto start = chrono::high_resolution_clock::now();// Start high-res timer
             while (head != nullptr)
             {
@@ -309,23 +304,20 @@ public:
                 insert(node->data);
                 head = head->next;
             }
-
-            // 2. End timer
+            
             auto finish = chrono::high_resolution_clock::now();// Stop high-res timer
             auto microseconds = chrono::duration_cast<chrono::microseconds>(finish - start);// Get duration
             auto milliseconds = chrono::duration_cast<chrono::milliseconds>(finish - start);// Get duration
-            auto seconds = chrono::duration_cast<chrono::seconds>(finish - start);// Get duration
-
-            // 3. Display time results
+                         
             /*Display in micro-milli-seconds */		 
             if (microseconds.count() < 1000)
             {
-                cout << '\n' << '\n' << "Sort runtime: " << microseconds.count() << " Microseconds" << '\n';
+                cout << '\n' << '\n' << "Insert runtime: " << microseconds.count() << " Microseconds" << '\n';
             }            
             else
             {
                 
-                cout << '\n' << '\n' << "Sort runtime: " << milliseconds.count() << " Milliseconds" << '\n';
+                cout << '\n' << '\n' << "Insert runtime: " << milliseconds.count() << " Milliseconds" << '\n';
             }
             
             //cout << "\n\nIn-order Traversal: \n\n";
@@ -354,8 +346,7 @@ public:
             switch (choice) {
             case 1:
                 cout << "Enter value to insert: ";
-                cin >> value;
-                //insert(value);
+                cin >> value;                 
                 insert(value);
                 break;
             case 2:
@@ -397,72 +388,13 @@ public:
 
     }
     
-};// End of BST class1
-
-
+};// End of BST class
 
 
 int main() {
    
     BST bst;
-    bst.mainmenu();
-    // int choice, value;
-    //
-    // do {
-    //     cout << "\nBinary Search Tree Operations:\n";
-    //     cout << "1. Insert\n";
-    //     cout << "2. Search\n";
-    //     cout << "3. Remove\n";
-    //     cout << "4. In-order Traversal\n";
-    //     cout << "5. Find Maximum Value\n";
-    //     cout << "6. Exit\n";        
-    //     cout << "Enter your choice: ";
-    //     cin >> choice;
-    //
-    //     switch (choice) {
-    //     case 1:
-    //         cout << "Enter value to insert: ";
-    //         cin >> value;
-    //     //insert(value);
-    //         bst.insert(value);
-    //         break;
-    //     case 2:
-    //         cout << "Enter value to search: ";
-    //         cin >> value;
-    //         if (bst.search(value))
-    //             cout << value << " is in the tree \n";
-    //         else
-    //             cout << value << " was not found in the tree \n";
-    //         break;
-    //     case 3:
-    //         cout << "Enter value to remove: ";
-    //         cin >> value;
-    //         bst.remove(value);
-    //         cout << value << " has been removed.\n";
-    //         break;
-    //     case 4:
-    //         cout << "In-order Traversal: ";
-    //         bst.inOrder();
-    //         break;
-    //     case 5:
-    //         try {
-    //             cout << "The highest value in the tree is: " << bst.findMax() << '\n';
-    //         } catch (const runtime_error& e) {
-    //             cout << e.what() << '\n';
-    //         }
-    //         break;
-    //     case 6:
-    //         cout << "Exiting...\n";
-    //         break;
-    //     case 7:
-    //         cout << "Opening Dat menu...\n";
-    //         bst.MenuChooseFile();
-    //         break;
-    //     
-    //     default:
-    //         cout << "Invalid choice! Please try again.\n";
-    //     }
-    // } while (choice != 7);
+    bst.mainmenu();// Start the main menu
 
     return 0;
 }
